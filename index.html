@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>au.ro shop - Premium Store</title>
+<title>gppd stuf shop - Premium Store</title>
   <!-- Added mobile-first responsive CSS with proper breakpoints -->
   <style>
 /* Mobile-first responsive design */
@@ -408,9 +408,14 @@ body.dark .watermark { color: rgba(255,255,255,0.02); }
     border:1px solid rgba(0,0,0,0.04);
   }
   body.dark .card { border:1px solid rgba(255,255,255,0.03); }
-
-  .card:hover{ transform:translateY(-8px) }
-  .img-wrap { 
+  .card {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  .card:hover{ 
+    transform: translateY(-8px);
+    box-shadow: 0 14px 28px rgba(0,0,0,0.15), 0 10px 10px rgba(0,0,0,0.1);
+  }
+.img-wrap { 
     height:220px;
     background:#f2f2f2; 
     display:flex;
@@ -443,8 +448,14 @@ body.dark .watermark { color: rgba(255,255,255,0.02); }
     box-shadow: 0 8px 20px rgba(138,106,79,0.18);
     transition: transform .12s, box-shadow .12s;
   }
-  .btn:hover { transform:translateY(-3px); box-shadow: 0 16px 40px rgba(138,106,79,0.22); }
-  .btn.ghost { background:transparent; color:var(--accent); border:1px solid rgba(0,0,0,0.06) }
+  .btn {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  }
+  .btn:hover { 
+    transform: translateY(-3px); 
+    box-shadow: 0 16px 40px rgba(138,106,79,0.22);
+  }
+.btn.ghost { background:transparent; color:var(--accent); border:1px solid rgba(0,0,0,0.06) }
 
   /* stock badge */
 
@@ -455,8 +466,17 @@ body.dark .watermark { color: rgba(255,255,255,0.02); }
     padding:20px;
     pointer-events: auto; /* Ensure modal is interactive */
   }
-.modal.show{ display:flex }
-  .modal-card { width:100%; max-width:980px; border-radius:14px; background:var(--card-bg); overflow:hidden; box-shadow:var(--shadow) }
+.modal {
+  transition: opacity 0.3s ease;
+  opacity: 0;
+  pointer-events: none;
+}
+.modal.show {
+  display: flex;
+  opacity: 1;
+  pointer-events: auto;
+}
+.modal-card { width:100%; max-width:980px; border-radius:14px; background:var(--card-bg); overflow:hidden; box-shadow:var(--shadow) }
   .modal-inner { display:grid; grid-template-columns: 1fr 1fr; gap:18px; padding:20px }
   .detail-img-container { position: relative; display: flex; align-items: center; justify-content: center; }
   .detail-img { width:100%; height:420px; object-fit:contain; border-radius:10px; }
@@ -636,8 +656,7 @@ body.dark .watermark { color: rgba(255,255,255,0.02); }
           <div style="margin-top:8px;padding:12px;border-radius:10px;background:var(--glass)">
             <div><strong>Made by:</strong> Darius — code & design</div>
             <div><strong>Distribution & Shipping:</strong> Iosua</div>
-            <div style="font-size:12px;color:var(--muted);margin-top:8px">You can edit these credits in settings to show your team.</div>
-          </div>
+</div>
         </div>
 
         <div>
@@ -693,10 +712,10 @@ function fixMobileInteractivity() {
 /* ---------- Data ---------- */
 const products = [
   { id:1, brand:"Ralph Lauren", name_ro:"Ralph Lauren Hoodie", name_en:"Ralph Lauren Hoodie", name_de:"Ralph Lauren Hoodie",
-    price:24.99, desc_ro:"Hoodie premium din bumbac.", desc_en:"Premium cotton hoodie.", desc_de:"Premium Baumwoll-Hoodie.",
+    price:29.99, desc_ro:"Hoodie premium din bumbac.", desc_en:"Premium cotton hoodie.", desc_de:"Premium Baumwoll-Hoodie.",
 img:"https://si.geilicdn.com/pcitem1910570286-0a890000019624bf5a660a2396f4_1920_1920.jpg",
-    category:"shirts", originalPrice:29.99, discount:0.1667, isNew:true, sizes:["XS", "S", "M", "L", "XL"],
-    images: [
+    category:"shirts", isNew:true, sizes:["XS", "S", "M", "L", "XL"],
+images: [
       "https://si.geilicdn.com/pcitem1910570286-0a890000019624bf5a660a2396f4_1920_1920.jpg",
       "https://si.geilicdn.com/pcitem1910570286-07740000019624bf5cd40a2395a3_1920_1920.jpg",
       "https://si.geilicdn.com/pcitem1910570286-0aea0000019624bf550b0a20e7c7_1920_1920.jpg",
@@ -745,8 +764,8 @@ img:"https://si.geilicdn.com/pcitem1910570286-0b5f0000019624c3a4890a21146b_1281_
     img:"https://cdn1.jolicloset.com/img4/full/2025/09/2475738-2.jpg",
     category:"accessories", originalPrice:25.99, discount:0, isNew:false, sizes:[] },
   { id:7, brand:"Louis Vuitton", name_ro:"Louis Vuitton Belt", name_en:"Louis Vuitton Belt", name_de:"Louis Vuitton Belt",
-    price:15.99, desc_ro:"Curea Louis Vuitton din piele.", desc_en:"Louis Vuitton leather belt.", desc_de:"Louis Vuitton Leder Gürtel.",
-    img:"https://img.alicdn.com/img/ibank/O1CN01zEUsYy1gRiGQzjUfQ_!!2217478184139-0-cib.jpg",
+    price:12.99, desc_ro:"Curea Louis Vuitton din piele.", desc_en:"Louis Vuitton leather belt.", desc_de:"Louis Vuitton Leder Gürtel.",
+img:"https://img.alicdn.com/img/ibank/O1CN01zEUsYy1gRiGQzjUfQ_!!2217478184139-0-cib.jpg",
     category:"accessories", originalPrice:15.99, discount:0, isNew:false, sizes:[],
     images: [
       "https://img.alicdn.com/img/ibank/O1CN01zEUsYy1gRiGQzjUfQ_!!2217478184139-0-cib.jpg",
@@ -840,8 +859,7 @@ function renderProducts(cat='all'){
             ${showDiscount ? `<div style="background:var(--danger); color:white; padding:2px 6px; border-radius:4px; font-size:10px; font-weight:bold">-${Math.round(p.discount*100)}%</div>` : ''}
           </div>
           <div class="desc">${desc}</div>
-          <div style="color:var(--accent); font-size:12px; font-weight:bold; margin-top:4px">Only ${stock} left!</div>
-          <div class="card-actions">
+<div class="card-actions">
             <button class="btn" style="width:100%" onclick="openDetail(${p.id})">${addText}</button>
           </div>
         </div>
@@ -885,13 +903,14 @@ function openDetail(id){
   document.getElementById('modalAddBtn').disabled = false;
   document.getElementById('detailModal').classList.add('show');
 }
-
 function closeDetail(){ 
-  document.getElementById('detailModal').classList.remove('show'); 
-  currentDetail = null; 
-  currentImageIndex = 0;
+  const modal = document.getElementById('detailModal');
+  modal.classList.remove('show');
+  setTimeout(() => {
+    currentDetail = null;
+    currentImageIndex = 0;
+  }, 300); // Match the CSS transition duration
 }
-
 function changeImage(direction) {
   if (!currentDetail || !currentDetail.images) return;
   
@@ -957,7 +976,9 @@ function openCart(){
   document.getElementById('cartModal').classList.add('show');
   updateCartUI();
 }
-function closeCart(){ document.getElementById('cartModal').classList.remove('show'); }
+function closeCart(){ 
+  document.getElementById('cartModal').classList.remove('show'); 
+}
 function updateCartUI(){
   const list = document.getElementById('cartList');
   if(cart.length === 0){
@@ -1063,7 +1084,9 @@ function copyEmail() {
 
 /* ---------- Settings & UI ---------- */
 function openSettings(){ document.getElementById('settingsModal').classList.add('show'); document.getElementById('langSettings').value = lang }
-function closeSettings(){ document.getElementById('settingsModal').classList.remove('show') }
+function closeSettings(){ 
+  document.getElementById('settingsModal').classList.remove('show');
+}
 function setTheme(t){
   theme = t;
   localStorage.setItem('au_theme', t);

@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>good stuf shop - Premium Store</title>
+<title>gppd stuf shop - Premium Store</title>
   <!-- Added mobile-first responsive CSS with proper breakpoints -->
   <style>
 /* Mobile-first responsive design */
@@ -782,6 +782,16 @@ img:"https://img.alicdn.com/img/ibank/O1CN01zEUsYy1gRiGQzjUfQ_!!2217478184139-0-
       "https://si.geilicdn.com/open1646458249-1234478995-58dd00000193a69caeb60a22d234_1080_1080.jpg",
       "https://si.geilicdn.com/open1646458249-1234478995-2f9100000193a69cb5920a232357_1080_1080.jpg",
       "https://si.geilicdn.com/open1646458249-1234478995-63eb00000193a69ca6c50a210298_640_640.jpg"
+    ] },
+  { id:9, brand:"Apple", name_ro:"AirPods", name_en:"AirPods", name_de:"AirPods",
+    price:199.99, desc_ro:"AirPods premium - disponibile în toate generațiile: AirPods 2, AirPods 2 Pro, AirPods Max, AirPods 3, AirPods 4.", desc_en:"Premium AirPods - available in all generations: AirPods 2, AirPods 2 Pro, AirPods Max, AirPods 3, AirPods 4.", desc_de:"Premium AirPods - verfügbar in allen Generationen: AirPods 2, AirPods 2 Pro, AirPods Max, AirPods 3, AirPods 4.",
+    img:"https://gomagcdn.ro/domains2/magexpert.ro/files/product/large/casti-wireless-albe-bluetooth-v5-0-wi-fi-profesionale-3d-sound-touch-control-senzor-fast-charging-409607.webp",
+category:"accessories", originalPrice:249.99, discount:0.2, isNew:true, sizes:[],
+    images: [
+      "https://m.media-amazon.com/images/I/61Z5J-fq7KL.jpg_BO30,255,255,255_UF900,850_SR1910,1000,0,C_QL100_.jpg",
+      "https://gomagcdn.ro/domains2/magexpert.ro/files/product/large/casti-wireless-albe-bluetooth-v5-0-wi-fi-profesionale-3d-sound-touch-control-senzor-fast-charging-409607.webp",
+      "https://s13emagst.akamaized.net/products/34173/34172673/images/res_fce1cb1b278ba0309fc02151a6ee3d28.jpg?width=720&height=720&hash=82FB11D98413839A4DE9FA3CAE0913EF",
+      "https://d.scdn.gr/images/sku_images/104028/104028974/xlarge_20241024163501_7eeb915f.jpeg"
     ] }
 ];
 
@@ -982,8 +992,9 @@ function closeCart(){
 function updateCartUI(){
   const list = document.getElementById('cartList');
   if(cart.length === 0){
-    list.innerHTML = `<div class="cart-empty">${getText('cart_empty')}</div>`;
-  } else {
+    list.innerHTML = `<div class="cart-empty">${getText('cart_empty')}
+    </div>`;
+} else {
     let html = '';
     let total = 0;
     cart.forEach(it=>{
@@ -1005,11 +1016,26 @@ function updateCartUI(){
         </div>
       </div>`;
     });
-    html += `<div style="padding:12px"><div class="cart-total">Total: ${currency(total)}</div>
-        <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
-          <button class="btn ghost" onclick="closeCart()" style="flex:1">Continue shopping</button>
-          <button class="btn" onclick="checkout()" style="flex:1">${getText('checkout')}</button>
+    html += `<div style="padding:12px">
+      <div class="cart-total">Total: ${currency(total)}</div>
+      
+      <div style="margin:20px 0;padding:16px;background:rgba(240,247,255,0.7);border-radius:12px;border-left:4px solid #3498db;">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+          <div style="background:#3498db;color:white;padding:4px 8px;border-radius:6px;font-size:12px;font-weight:700;">GOOD STUF</div>
+          <div style="font-weight:700;color:#3498db;">Livrare directă</div>
         </div>
+        <p style="margin:8px 0;font-size:14px;color:#444;">
+          ✔ Produsele din această comandă sunt livrate direct de Good Stuf. Suntem vânzătorii oficiali — comenzile provin doar de la noi, fără intermediari. Toate articolele sunt de calitate bună, atent verificate înainte de livrare.
+        </p>
+        <div style="margin-top:12px;font-size:13px;">
+          <strong>Email oficial:</strong> goodstufweb@gmail.com
+        </div>
+      </div>
+
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;">
+        <button class="btn ghost" onclick="closeCart()" style="flex:1">Continue shopping</button>
+        <button class="btn" onclick="checkout()" style="flex:1">${getText('checkout')}</button>
+      </div>
 </div>`;
     list.innerHTML = html;
   }

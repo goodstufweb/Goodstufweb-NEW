@@ -7,8 +7,20 @@
 <title>gppd stuf shop - Premium Store</title>
   <!-- Added mobile-first responsive CSS with proper breakpoints -->
   <style>
+/* Hover effect for "most popular" text */
+.hover-popular-text {
+  display: inline-block;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.hover-popular-text:hover {
+  color: var(--accent);
+  transform: translateY(-3px);
+  text-shadow: 0 4px 8px rgba(138, 106, 79, 0.3);
+}
+
 /* Mobile-first responsive design */
-  @media (max-width: 319px) {
+@media (max-width: 319px) {
     /* Extra small devices */
     .logo { height: 32px; width: 32px; font-size: 12px; }
     .brand h1 { font-size: 14px; }
@@ -416,6 +428,17 @@ body.dark .watermark { color: rgba(255,255,255,0.02); }
     transform: translateY(-8px);
     box-shadow: 0 14px 28px rgba(0,0,0,0.15), 0 10px 10px rgba(0,0,0,0.1);
   }
+  
+  .hover-popular {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: inline-block;
+  }
+  
+  .hover-popular:hover {
+    color: var(--accent);
+    transform: translateY(-3px);
+    text-shadow: 0 4px 8px rgba(138, 106, 79, 0.3);
+  }
 .img-wrap { 
     height:220px;
     background:#f2f2f2; 
@@ -518,6 +541,55 @@ body.dark .watermark { color: rgba(255,255,255,0.02); }
     }
   }
 </style>
+<script>
+// Function to wrap "most popular" text with hover effect
+function applyPopularHoverEffect() {
+  // Find all text nodes containing "most popular" (case insensitive)
+  const walker = document.createTreeWalker(
+    document.body,
+    NodeFilter.SHOW_TEXT,
+    {
+      acceptNode: function(node) {
+        return node.nodeValue.match(/\bmost popular\b/i) ? 
+          NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT;
+      }
+    },
+    false
+  );
+
+  const nodes = [];
+  let node;
+  while(node = walker.nextNode()) nodes.push(node);
+
+  // Process each matched node
+  nodes.forEach(textNode => {
+    const span = document.createElement('span');
+    span.className = 'hover-popular-text';
+    
+    // Replace entire text node to handle multiple matches
+    const newText = textNode.nodeValue.replace(
+      /\b(most popular)\b/gi, 
+      '<span class="hover-popular-text">$1</span>'
+    );
+    
+    const temp = document.createElement('div');
+    temp.innerHTML = newText;
+    
+    // Replace original text node with processed content
+    textNode.parentNode.replaceChild(temp.firstChild, textNode);
+  });
+}
+
+// Run on DOM load and after language changes
+document.addEventListener('DOMContentLoaded', applyPopularHoverEffect);
+
+// Override setLang function to reapply hover effect after language change
+const originalSetLang = window.setLang;
+window.setLang = function(v) {
+  originalSetLang(v);
+  setTimeout(applyPopularHoverEffect, 50); // Small delay to allow DOM update
+};
+</script>
 </head>
 <body>
 <nav class="navbar">
@@ -577,8 +649,8 @@ body.dark .watermark { color: rgba(255,255,255,0.02); }
 
       <div style="width:320px; text-align:center;">
         <div style="padding:18px;border-radius:12px;background:var(--glass);box-shadow:var(--shadow)">
-          <h3 id="quickTitle">Most Popular</h3>
-          <p id="quickDesc" style="color:var(--muted)">Our top products</p>
+          <h3 id="quickTitle" class="hover-popular">Most Popular</h3>
+<p id="quickDesc" style="color:var(--muted)">Our top products</p>
           <div style="margin-top:10px"><button class="btn" onclick="showPopular()" style="width:100%"><span id="btnSettings">See top products</span></button></div>
 </div>
       </div>
